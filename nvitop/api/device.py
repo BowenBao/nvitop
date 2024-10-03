@@ -1500,9 +1500,10 @@ class Device:  # pylint: disable=too-many-instance-attributes,too-many-public-me
                     power_dict['ret'] == librocm.rsmi_status_t.RSMI_STATUS_SUCCESS  # type: ignore[attr-defined]
                     and power_dict['power_type'] != 'INVALID_POWER_TYPE'
                 ):
-                    assert (
-                        power_dict['power_type'] == 'AVERAGE'
-                    )  # TODO: add support for more types # pylint: disable=W0511
+                    assert power_dict['power_type'] in {
+                        'AVERAGE',
+                        'CURRENT SOCKET',
+                    }, f"Unsupported power type: {power_dict['power_type']}"  # TODO: add support for more types # pylint: disable=W0511
                     return int(float(power_dict['power']) * 1000)
             except AttributeError:
                 # ROCm power usage not available.
