@@ -184,9 +184,9 @@ class DevicePanel(Displayable):  # pylint: disable=too-many-instance-attributes
             compact = self.compact
 
         version_infos = [
-            'NVITOP {}'.format(__version__.partition('+')[0]),
-            f'Driver Version: {self.driver_version}',
-            f'CUDA Driver Version: {self.cuda_driver_version}',
+            'GPU Monitor ',
+            f'ROCm Driver Version: {self.driver_version}',
+            "",
         ]
         if sum(len(v) for v in version_infos) % 2 == 0:
             version_infos[0] += ' '
